@@ -1,6 +1,7 @@
 package mainpackage;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 public class Controller {
@@ -21,7 +22,7 @@ public class Controller {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			double[] result;
+			ArrayList<double[]> result;
 			calculator.setTerms(view.getTerms());
 			result=calculator.bisection(view.getBX0(), view.getX1(), view.getBIterations(), view.getTolerance());
 			view.setBisectionResult(result);
@@ -34,7 +35,7 @@ public class Controller {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			double result;
+			ArrayList<Double> result;
 			calculator.setTerms(view.getTerms());
 			result=calculator.newton(view.getNX0(), view.getNIterations());
 			view.setNewtonResult(result);

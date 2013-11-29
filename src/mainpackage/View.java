@@ -167,13 +167,22 @@ public class View extends JFrame{
 	{
 		return Integer.parseInt(txtNIterations.getText());
 	}
-	public void setBisectionResult(double[] result)
+	public void setBisectionResult(ArrayList<double[]> result) 
 	{
-		lblOutputBisection.setText(Double.toString(result[0])+", "+Double.toString(result[1]));
+		for(double[] interval : result)
+		{
+		//lblOutputBisection.setText(lblOutputBisection.getText()+"\n"+Double.toString(interval[0])+", "+Double.toString(interval[1]));
+		//TODO: set up a table model based on list of results
+		}
 	}
-	public void setNewtonResult(double result)
+	public void setNewtonResult(ArrayList<Double> result)
 	{
-		lblOutputNewton.setText(Double.toString(result));
+		for(double xi : result)
+		{
+			//lblOutputNewton.setText(lblOutputNewton.getText()+", \n"+Double.toString(xi));
+			//TODO: set up a table model based on list of results
+		}
+		
 	}
 	
 }

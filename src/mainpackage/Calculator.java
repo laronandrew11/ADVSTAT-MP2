@@ -9,8 +9,9 @@ public class Calculator{
 		terms=new ArrayList<Term>();
 	}
 
-	public double[] bisection(double x0, double x1,int max, double tol)
+	public ArrayList<double[]> bisection(double x0, double x1,int max, double tol)
 	{
+		ArrayList<double[]>values=new ArrayList<double[]>();
 		int i=0;
 		double y0=f(x0);
 		double y1=f(x1);
@@ -32,14 +33,16 @@ public class Calculator{
 					y1 = y2;
 				}
 			}
+			values.add(new double[]{x0,x1});
 			i++;
 		}while(y2!=0&&i<max&&Math.abs(x1-x0)>tol);
 		
-		return new double[]{x0,x1};
+		return values;
 		
 	}
-	public double newton(double x1, int max)
+	public ArrayList<Double> newton(double x1, int max)
 	{	
+		ArrayList<Double>values=new ArrayList<Double>();
 		double oldx;
 		double newx=0;
 		oldx=x1;
@@ -47,8 +50,9 @@ public class Calculator{
 		{
 			newx=oldx-f(oldx)/fprime(oldx);
 			oldx=newx;
+			values.add(newx);
 		}
-		return newx;
+		return values;
 	}
 	
 
