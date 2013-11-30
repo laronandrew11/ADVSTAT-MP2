@@ -8,8 +8,11 @@ import javax.swing.JFrame;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.table.DefaultTableModel;
 
 
 public class View extends JFrame{
@@ -25,6 +28,9 @@ public class View extends JFrame{
 	private JPanel contentPane;
 	private JLabel lblOutputBisection;
 	private JLabel lblOutputNewton;
+	private JTable resultTable;
+	private JScrollPane tablePane;
+	private DefaultTableModel TableModel;
 	public View() {
 		setTitle("Numerical Analysis Simulation");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,6 +49,22 @@ public class View extends JFrame{
 		
 		contentPane.setLayout(new MigLayout("", "[][grow][grow][]", "[][][][][][][][][][]"));
 		
+		  TableModel = new DefaultTableModel(
+					new Object[][] {
+							
+					},new String[]{
+							 "Iteration", 
+							"Lower", 
+							"Upper"
+					}		
+			     );
+				
+			
+			resultTable = new JTable();
+			resultTable.setModel(TableModel);
+			tablePane=new JScrollPane(resultTable);
+			contentPane.add(tablePane, "cell 2 0");
+			
 		JLabel lblPolynomial = new JLabel("Polynomial:");
 		contentPane.add(lblPolynomial, "cell 0 1,alignx trailing");
 		
@@ -110,8 +132,12 @@ public class View extends JFrame{
 		lblOutputNewton = new JLabel("");
 		contentPane.add(lblOutputNewton, "cell 2 9");
 		setContentPane(contentPane);
-	}
+		
 	
+		//resultTable.setVisible(true);
+	
+		
+		}
 	/*Functions to interface with controller*/
 	public void addBisectionListener(ActionListener listener)
 	{
@@ -169,19 +195,49 @@ public class View extends JFrame{
 	}
 	public void setBisectionResult(ArrayList<double[]> result) 
 	{
+		TableModel = new DefaultTableModel(
+				new Object[][] {
+						
+				},new String[]{
+						 "Iteration", 
+						"Lower", 
+						"Upper"
+				}		
+		     );
+		//lblOutputBisection.setText("");
+		int i=0;
 		for(double[] interval : result)
 		{
 		//lblOutputBisection.setText(lblOutputBisection.getText()+"\n"+Double.toString(interval[0])+", "+Double.toString(interval[1]));
 		//TODO: set up a table model based on list of results
+		TableModel.addRow(new String[]{Integer.toString(i),Double.toString(interval[0]), Double.toString(interval[1])} );
+		i++;
 		}
+		resultTable.setModel(TableModel);
+		resultTable.repaint();
 	}
 	public void setNewtonResult(ArrayList<Double> result)
 	{
+		TableModel = new DefaultTableModel(
+				new Object[][] {
+						
+				},new String[]{
+						 "Iteration", 
+						"X(i)"
+					
+				}		
+		     );
+		//lblOutputNewton.setText("");
+		int i=0;
 		for(double xi : result)
 		{
 			//lblOutputNewton.setText(lblOutputNewton.getText()+", \n"+Double.toString(xi));
 			//TODO: set up a table model based on list of results
+			TableModel.addRow(new String[]{Integer.toString(i),Double.toString(xi)} );
+			i++;
 		}
+		resultTable.setModel(TableModel);
+		resultTable.repaint();
 		
 	}
 	

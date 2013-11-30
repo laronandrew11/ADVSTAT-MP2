@@ -55,7 +55,15 @@ public class Calculator{
 		return values;
 	}
 	
-
+	public ArrayList<double[]>getTrueValues(ArrayList<Double>values)
+	{
+		ArrayList<double[]>list=new ArrayList<double[]>();
+		for(double x1: values)
+		{
+			list.add(new double[]{x1,f(x1)});
+		}
+		return list;
+	}
 	public double f(double x)
 	{
 		double y=0;
