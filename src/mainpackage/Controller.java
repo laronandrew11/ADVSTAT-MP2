@@ -26,7 +26,7 @@ public class Controller {
 			calculator.setTerms(view.getTerms());
 			result=calculator.bisection(view.getBX0(), view.getX1(), view.getBIterations(), view.getTolerance());
 			view.setBisectionResult(result);
-			
+			view.createChart(calculator.DatasetValues(), "Graph", view.getChart(), view.getChartPanel(), 12, 18);
 		}
 	}
 	public class NewtonListener implements ActionListener
@@ -39,7 +39,7 @@ public class Controller {
 			calculator.setTerms(view.getTerms());
 			result=calculator.newton(view.getNX0(), view.getNIterations());
 			view.setNewtonResult(result);
-			
+			view.createChart(calculator.DatasetValues(), "Graph", view.getChart(), view.getChartPanel(), 12, 18);
 		}
 	}
 
