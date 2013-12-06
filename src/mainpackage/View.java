@@ -23,8 +23,12 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.xy.CategoryTableXYDataset;
+
 import javax.swing.JTabbedPane;
 
 
@@ -184,26 +188,28 @@ public class View extends JFrame{
 		  graphtabbedPane.add(chartPanel);
 		  repaint();
 	}
-	public void createChart(CategoryDataset dataset, String title,JFreeChart chart,ChartPanel chartPanel, int x, int y)
+	public void createChart(CategoryTableXYDataset dataset, String title,JFreeChart chart,ChartPanel chartPanel, int x, int y)
 	{
-		chart = ChartFactory.createLineChart(
+		chart = ChartFactory.createXYLineChart(
 		title, "X","f(X)" , dataset,
 		PlotOrientation.VERTICAL, true, true, false);
 				  
 		//Customization of bar graph
 		chart.getTitle().setFont(new Font("Tahoma",Font.PLAIN,20));
 				  
-		final CategoryPlot plot = chart.getCategoryPlot();
+		final XYPlot plot = chart.getXYPlot();
 		plot.setBackgroundPaint(Color.lightGray);
 		plot.setRangeGridlinePaint(Color.white);
 		plot.getDomainAxis().setLabelFont(new Font("Tahoma",Font.PLAIN,15));
 		plot.getRangeAxis().setLabelFont(new Font("Tahoma",Font.PLAIN,15));
 			      
-		final LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
+		final XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) plot.getRenderer();
 			      
 		renderer.setDrawOutlines(true);
 		renderer.setBaseShapesVisible(true);
-		renderer.setItemMargin(0.2);
+		renderer.setSeriesLinesVisible(0, false);
+		renderer.setSeriesLinesVisible(1, false);
+		renderer.setSeriesLinesVisible(2, false);
 		renderer.setSeriesPaint(0, Color.green);
 		updateChart(chart, chartPanel, x, y);
 	}

@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.xy.CategoryTableXYDataset;
 
 
 public class Calculator{
@@ -39,7 +40,6 @@ public class Calculator{
 			values.add(new double[]{x0,x1});
 			i++;
 		}while(y2!=0&&i<max&&Math.abs(x1-x0)>tol);
-		
 		return values;
 		
 	}
@@ -90,11 +90,31 @@ public class Calculator{
 	{
 		this.terms=terms;
 	}
-	public CategoryDataset DatasetValues() {
-		DefaultCategoryDataset tempDataset=new DefaultCategoryDataset();
-		for(int i = -10; i <= 10; i++)
+	public CategoryTableXYDataset NewtonDatasetValues(double nx0, ArrayList<Double> result) {
+		CategoryTableXYDataset tempDataset=new CategoryTableXYDataset();
+		
+		for(int i = (int) -nx0; i <= (int) nx0; i++)
 		{
-			tempDataset.addValue(f(i), "Polynomial", Integer.toString(i));
+			tempDataset.add(i, f(i), "Polynomial");
+		}
+		for(int i = 0; i < result.size(); i++)
+		{
+			tempDataset.add(result.get(i), f(result.get(i)), "x0");
+		}
+		return tempDataset;
+	}
+	public CategoryTableXYDataset BisectionDatasetValues(double x0, double x1, ArrayList<double[]> result) {
+		CategoryTableXYDataset tempDataset=new CategoryTableXYDataset();
+		
+		for(int i =(int) x0; i <= (int) x1; i++)
+		{
+			tempDataset.add(i, f(i), "Polynomial");
+			System.out.println(i +" "+ f(i));
+		}
+		for(double[] interval : result)
+		{
+			tempDataset.add(interval[0], f(interval[0]), "x0");
+			tempDataset.add(interval[1], f(interval[1]), "x1");
 		}
 		return tempDataset;
 	}
