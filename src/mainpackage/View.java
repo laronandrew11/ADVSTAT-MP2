@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -314,6 +315,10 @@ public class View extends JFrame{
 		resultTable.setModel(TableModel);
 		resultTable.repaint();
 		
+	}
+	//Display the error message
+	public void displayError(String message){
+		JOptionPane.showMessageDialog(this, message);
 	}
 	public JFreeChart getChart() {
 		return chart;

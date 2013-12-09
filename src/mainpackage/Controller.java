@@ -23,10 +23,13 @@ public class Controller {
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			ArrayList<double[]> result;
-			calculator.setTerms(view.getTerms());
-			result=calculator.bisection(view.getBX0(), view.getX1(), view.getBIterations(), view.getTolerance());
-			view.setBisectionResult(result);
-			view.createChart(calculator.BisectionDatasetValues(view.getBX0(), view.getX1(), result), "Graph", view.getChart(), view.getChartPanel(), 12, 18);
+			if(view.getBX0() != view.getX1()) {
+				calculator.setTerms(view.getTerms());
+				result=calculator.bisection(view.getBX0(), view.getX1(), view.getBIterations(), view.getTolerance());
+				view.setBisectionResult(result);
+				view.createChart(calculator.BisectionDatasetValues(view.getBX0(), view.getX1(), result), "Graph", view.getChart(), view.getChartPanel(), 12, 18);
+			}
+			else view.displayError("x0 and x1 cannot have the same value");
 		}
 	}
 	public class NewtonListener implements ActionListener
