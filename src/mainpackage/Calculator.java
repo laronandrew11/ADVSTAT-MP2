@@ -92,7 +92,10 @@ public class Calculator{
 	}
 	public CategoryTableXYDataset NewtonDatasetValues(double nx0, ArrayList<Double> result) {
 		CategoryTableXYDataset tempDataset=new CategoryTableXYDataset();
-		
+		if(nx0 < 0) 
+		{
+			nx0 *= -1;
+		}
 		for(int i = (int) -nx0; i <= (int) nx0; i++)
 		{
 			tempDataset.add(i, f(i), "Polynomial");
