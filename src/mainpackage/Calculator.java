@@ -108,11 +108,21 @@ public class Calculator{
 	}
 	public CategoryTableXYDataset BisectionDatasetValues(double x0, double x1, ArrayList<double[]> result) {
 		CategoryTableXYDataset tempDataset=new CategoryTableXYDataset();
-		
-		for(int i =(int) x0; i <= (int) x1; i++)
+		if(x0 < x1)
 		{
-			tempDataset.add(i, f(i), "Polynomial");
-			System.out.println(i +" "+ f(i));
+			for(int i =(int) x0; i <= (int) x1; i++)
+			{
+				tempDataset.add(i, f(i), "Polynomial");
+				System.out.println(i +" "+ f(i));
+			}
+		}
+		else
+		{
+			for(int i =(int) x1; i <= (int) x0; i++)
+			{
+				tempDataset.add(i, f(i), "Polynomial");
+				System.out.println(i +" "+ f(i));
+			}
 		}
 		for(double[] interval : result)
 		{
