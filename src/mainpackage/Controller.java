@@ -42,7 +42,7 @@ public class Controller {
 			if(view.getNX0()!=0)
 			{
 				calculator.setTerms(view.getTerms());
-				result=calculator.newton(view.getNX0(), view.getNIterations(),view.getNTolerance());
+				result=calculator.newton(view.getNX0(), view.getNIterations()/*,view.getNTolerance()*/);
 				view.setNewtonResult(result);
 				view.createChart(calculator.NewtonDatasetValues(view.getNX0(), result), "Graph", view.getChart(), view.getChartPanel(), 12, 18);
 		

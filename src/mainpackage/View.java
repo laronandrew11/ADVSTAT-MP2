@@ -39,7 +39,7 @@ public class View extends JFrame{
 	private JTextField txtX1;
 	private JTextField txtBIterations;
 	private JTextField txtTolerance;
-	private JTextField txtNTolerance;
+	//private JTextField txtNTolerance;
 	private JTextField txtNX0;
 	private JTextField txtNIterations;
 	private JButton btnComputeBisection;
@@ -123,15 +123,15 @@ public class View extends JFrame{
 		txtNIterations.setColumns(10);
 		contentPane.add(txtNIterations, "cell 3 5,alignx right");
 		
-		txtNTolerance = new JTextField();
+		/*txtNTolerance = new JTextField();
 		txtNTolerance.setColumns(10);
-		contentPane.add(txtNTolerance, "cell 3 6,alignx right");
+		contentPane.add(txtNTolerance, "cell 3 6,alignx right");*/
 		
 		JLabel lblNIterations = new JLabel("Iterations");
 		contentPane.add(lblNIterations, "cell 4 5");
 		
-		JLabel lblNTolerance = new JLabel("Tolerance");
-		contentPane.add(lblNTolerance, "cell 4 6");
+		/*JLabel lblNTolerance = new JLabel("Tolerance");
+		contentPane.add(lblNTolerance, "cell 4 6");*/
 		
 		JLabel lblBIterations = new JLabel("Iterations");
 		contentPane.add(lblBIterations, "cell 0 6,alignx trailing");
@@ -269,10 +269,10 @@ public class View extends JFrame{
 	{
 		return Double.parseDouble(txtTolerance.getText());
 	}
-	public double getNTolerance()
+	/*public double getNTolerance()
 	{
 		return Double.parseDouble(txtNTolerance.getText());
-	}
+	}*/
 	public double getNX0()
 	{
 		return Double.parseDouble(txtNX0.getText());

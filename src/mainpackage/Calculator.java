@@ -43,7 +43,7 @@ public class Calculator{
 		return values;
 		
 	}
-	public ArrayList<Double> newton(double x1, int max, double tol)
+	public ArrayList<Double> newton(double x1, int max/*, double tol*/)
 	{	
 		ArrayList<Double>values=new ArrayList<Double>();
 		double oldx;
