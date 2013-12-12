@@ -39,10 +39,15 @@ public class Controller {
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			ArrayList<Double> result;
-			calculator.setTerms(view.getTerms());
-			result=calculator.newton(view.getNX0(), view.getNIterations());
-			view.setNewtonResult(result);
-			view.createChart(calculator.NewtonDatasetValues(view.getNX0(), result), "Graph", view.getChart(), view.getChartPanel(), 12, 18);
+			if(view.getNX0()!=0)
+			{
+				calculator.setTerms(view.getTerms());
+				result=calculator.newton(view.getNX0(), view.getNIterations());
+				view.setNewtonResult(result);
+				view.createChart(calculator.NewtonDatasetValues(view.getNX0(), result), "Graph", view.getChart(), view.getChartPanel(), 12, 18);
+		
+			}
+			else view.displayError("Initial value cannot be 0");
 		}
 	}
 
