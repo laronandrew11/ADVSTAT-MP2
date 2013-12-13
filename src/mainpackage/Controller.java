@@ -24,9 +24,10 @@ public class Controller {
 			// TODO Auto-generated method stub
 			ArrayList<double[]> result;
 			if(view.getBX0() != view.getX1()) {
-				if(calculator.f(view.getBX0()) * calculator.f(view.getX1()) < 0) {
-					calculator.setTerms(view.getTerms());
-					result=calculator.bisection(view.getBX0(), view.getX1(), view.getBIterations(), view.getTolerance());
+				
+				calculator.setTerms(view.getTerms());
+				result=calculator.bisection(view.getBX0(), view.getX1(), view.getBIterations(), view.getTolerance());
+				if(calculator.f(view.getBX0()) * calculator.f(view.getX1()) <= 0) {
 					view.setBisectionResult(result);
 					view.createChart(calculator.BisectionDatasetValues(view.getBX0(), view.getX1(), result), "Graph", view.getChart(), view.getChartPanel(), 12, 18);
 				}
