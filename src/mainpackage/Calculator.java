@@ -37,15 +37,15 @@ public class Calculator{
 					y1 = y2;
 				}
 			}
-			values.add(new double[]{x0,x1});
+			values.add(new double[]{x0,x1,y0,y1});
 			i++;
 		}while(y2!=0&&i<max&&Math.abs(x1-x0)>tol);
 		return values;
 		
 	}
-	public ArrayList<Double> newton(double x1, int max/*, double tol*/)
+	public ArrayList<double[]> newton(double x1, int max/*, double tol*/)
 	{	
-		ArrayList<Double>values=new ArrayList<Double>();
+		ArrayList<double[]>values=new ArrayList<double[]>();
 		double oldx;
 		double newx=0;
 		oldx=x1;
@@ -53,7 +53,7 @@ public class Calculator{
 		{
 			newx=oldx-f(oldx)/fprime(oldx);
 			oldx=newx;
-			values.add(newx);
+			values.add(new double[]{newx, f(newx)});
 		}
 		return values;
 	}
@@ -90,7 +90,7 @@ public class Calculator{
 	{
 		this.terms=terms;
 	}
-	public CategoryTableXYDataset NewtonDatasetValues(double nx0, ArrayList<Double> result) {
+	public CategoryTableXYDataset NewtonDatasetValues(double nx0, ArrayList<double[]> result) {
 		CategoryTableXYDataset tempDataset=new CategoryTableXYDataset();
 		if(nx0 < 0) 
 		{
@@ -102,7 +102,7 @@ public class Calculator{
 		}
 		for(int i = 0; i < result.size(); i++)
 		{
-			tempDataset.add(result.get(i), f(result.get(i)), "x0");
+			tempDataset.add(result.get(i)[0], result.get(i)[1], "x0");
 		}
 		return tempDataset;
 	}
@@ -126,8 +126,8 @@ public class Calculator{
 		}
 		for(double[] interval : result)
 		{
-			tempDataset.add(interval[0], f(interval[0]), "x0");
-			tempDataset.add(interval[1], f(interval[1]), "x1");
+			tempDataset.add(interval[0], interval[2], "x0");
+			tempDataset.add(interval[1], interval[3], "x1");
 		}
 		return tempDataset;
 	}

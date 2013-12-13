@@ -289,7 +289,9 @@ public class View extends JFrame{
 				},new String[]{
 						 "Iteration", 
 						"Lower", 
-						"Upper"
+						"Upper",
+						"Y(0)",
+						"Y(1)"
 				}		
 		     );
 		//lblOutputBisection.setText("");
@@ -298,30 +300,31 @@ public class View extends JFrame{
 		{
 		//lblOutputBisection.setText(lblOutputBisection.getText()+"\n"+Double.toString(interval[0])+", "+Double.toString(interval[1]));
 		//TODO: set up a table model based on list of results
-		TableModel.addRow(new String[]{Integer.toString(i),Double.toString(interval[0]), Double.toString(interval[1])} );
+		TableModel.addRow(new String[]{Integer.toString(i),Double.toString(interval[0]), Double.toString(interval[1]),Double.toString(interval[2]),Double.toString(interval[3])} );
 		i++;
 		}
 		resultTable.setModel(TableModel);
 		resultTable.repaint();
 	}
-	public void setNewtonResult(ArrayList<Double> result)
+	public void setNewtonResult(ArrayList<double[]> result)
 	{
 		TableModel = new DefaultTableModel(
 				new Object[][] {
 						
 				},new String[]{
 						 "Iteration", 
-						"X(i)"
+						"X(i)",
+						"Y(i)"
 					
 				}		
 		     );
 		//lblOutputNewton.setText("");
 		int i=0;
-		for(double xi : result)
+		for(double [] xi : result)
 		{
 			//lblOutputNewton.setText(lblOutputNewton.getText()+", \n"+Double.toString(xi));
 			//TODO: set up a table model based on list of results
-			TableModel.addRow(new String[]{Integer.toString(i),Double.toString(xi)} );
+			TableModel.addRow(new String[]{Integer.toString(i),Double.toString(xi[0]), Double.toString(xi[1])} );
 			i++;
 		}
 		resultTable.setModel(TableModel);

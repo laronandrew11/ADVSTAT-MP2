@@ -38,7 +38,7 @@ public class Controller {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			ArrayList<Double> result;
+			ArrayList<double[]> result;
 			if(view.getNX0()!=0)
 			{
 				calculator.setTerms(view.getTerms());
